@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <title>BMI Calculator</title> 
+        
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+        -->
+        <script>
+            function bmi(){
+                
+                var w = document.forms["myform"]["weight"].value;
+                var h = document.forms["myform"]["height"].value;
+                var exp = Math.pow(h,2);
+                var bmi = w/exp;
+                var temp =  Math.round((bmi * 100)) / 100;
+                bmi = temp;
+
+                document.getElementById("presults").innerHTML = "Your BMI is " + bmi;
+                
+                if(bmi<= 18.5){
+                    document.getElementById("resultsImg").src = "underweight.jpg";  
+                }
+                else if(bmi <= 24.9){
+                    document.getElementById("resultsImg").src = "normal.jpg";   
+                }
+                else if (bmi <= 29.9){
+                    document.getElementById("resultsImg").src = "overweight.jpg";  
+                }
+                else {
+                    document.getElementById("resultsImg").src = "obese.jpg";
+                }
+                
+                
+               document.getElementById("results").style.display = "block";
+
+
+            }
+
+            function reset(){
+                document.getElementById("myform").reset();
+                document.getElementById("results").style.display = "none";
+            }
+
+
+        </script>
+
+        <style>
+            #results{
+               display: none;
+            }
+        </style>
+
+
+
+    </head>
+
+    <body>
+        
+
+        <div class="container" id="form" >
+
+            <h1>BMI Calculator</h1><br>
+
+            <form name="myform" id="myform" onsubmit="bmi(); return false;"> 
+                
+                <div>
+                    <label>Weight in kilograms (kg)</label> <br>
+                    <input type="number" min=0.1 step=0.1 name="weight" id="weight" required> 
+                </div> <br>
+
+                <div>
+                    <label>Height in meters (m)</label> <br>
+                    <input type="number" min= 0.1 step=0.1 name="height" id="height" required> 
+                </div> <br>
+
+                <div>
+                    <input type="submit" value="Calculate"> 
+                </div><br>
+
+            </form><br>
+
+            
+
+        </div>
+
+        <div class="container" id="results">
+            <h1>Your Results</h1>
+            <h3>Results</h3>
+            <p id="presults">results go here</p>
+            <img src="" id="resultsImg" alt="results image"> <br> <br>
+            <button onclick="reset()">Reset</button>
+        </div>
+    </body>
+
+ </html>
